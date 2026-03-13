@@ -23,11 +23,12 @@
 
 ---
 
-### ШАГ 0: Клонирование
+### ШАГ 0: Скачивание и подготовка
 
 ```bash
-git clone https://github.com/yuryeremin17-svg/AI_OFFICE_TEMPLATE.git AI_OFFICE
-cd AI_OFFICE
+git clone https://github.com/yuryeremin17-svg/AI_OFFICE_TEMPLATE.git ~/Documents/AI_OFFICE
+cd ~/Documents/AI_OFFICE
+git remote remove origin
 ```
 
 Скажи клиенту: "Офис скачан. Задам несколько вопросов, чтобы настроить под вас. Займёт 10 минут."
@@ -152,12 +153,11 @@ cd AI_OFFICE
 - Скажите "проверь [текст]" — редактура и улучшение
 [+ специфичные для подключённых скиллов]
 
-В конце каждой сессии я обновлю HANDOFF.md — в следующий раз продолжим с того же места.
-
-Сохранить настройки на GitHub?
+В конце каждой сессии скажите "сохрани" — я обновлю историю и сделаю бэкап в iCloud.
+В следующий раз продолжим с того же места.
 ```
 
-**4. Очистка:** удали папку onboarding/ и файл DEV.md — клиенту они не нужны.
+**4. Очистка:** удали папки onboarding/, sales/ и файл DEV.md — клиенту они не нужны.
 
 **5. Обнови HANDOFF.md** — финальная версия:
 ```
@@ -178,7 +178,12 @@ cd AI_OFFICE
 - [первый приоритет клиента из его ответов]
 ```
 
-**6.** Если клиент согласен сохранить → git add, commit, push.
+**6. Первое сохранение:**
+```bash
+git add -A && git commit -m "Онбординг завершён"
+rsync -a ~/Documents/AI_OFFICE/ ~/Library/Mobile\ Documents/com~apple~CloudDocs/AI_OFFICE_BACKUP/
+```
+Скажи: "Всё сохранено. Бэкап в iCloud сделан."
 
 ---
 
@@ -190,7 +195,8 @@ cd AI_OFFICE
 - [ ] CLAUDE.md: плейсхолдеры заполнены, скиллы подключены, цепочки прописаны
 - [ ] HANDOFF.md: первая запись
 - [ ] reports/: первый результат демо-скилла
-- [ ] git: commit + push (если клиент согласен)
+- [ ] git: локальный commit
+- [ ] iCloud: бэкап в ~/Library/Mobile Documents/com~apple~CloudDocs/AI_OFFICE_BACKUP/
 
 **Допустимо оставить пустым (заполнится в первых сессиях):**
 - PROFILE.md: бэкграунд (подробный), сильные стороны, рабочий режим

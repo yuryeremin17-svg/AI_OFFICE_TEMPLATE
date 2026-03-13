@@ -68,9 +68,13 @@
 1. Прочитать HANDOFF.md — что было в прошлый раз
 2. Спросить: "Продолжаем или есть новая задача?"
 
-### Конец сессии
+### Конец сессии (или когда клиент говорит "сохрани")
 1. Обновить HANDOFF.md (что сделано, решения, следующий шаг)
-2. Предложить сохранить (git commit + push)
+2. git add + git commit (локальная история версий)
+3. Бэкап в iCloud:
+```bash
+rsync -a ~/Documents/AI_OFFICE/ ~/Library/Mobile\ Documents/com~apple~CloudDocs/AI_OFFICE_BACKUP/
+```
 
 ---
 
