@@ -55,7 +55,9 @@ if [ -f "$OFFICE_DIR/HANDOFF.md" ]; then
         esac
 
         if [ -n "$MONTH" ]; then
-            HANDOFF_TS=$(date -j -f "%Y-%m-%d" "$YEAR-$MONTH-$(printf '%02d' "$DAY")" "+%s" 2>/dev/null || echo 0)
+            DATE_STR="$YEAR-$MONTH-$(printf '%02d' "$DAY")"
+            # macOS: date -j, Linux: date -d
+            HANDOFF_TS=$(date -j -f "%Y-%m-%d" "$DATE_STR" "+%s" 2>/dev/null || date -d "$DATE_STR" "+%s" 2>/dev/null || echo 0)
             NOW_TS=$(date "+%s")
             DIFF_DAYS=$(( (NOW_TS - HANDOFF_TS) / 86400 ))
 
